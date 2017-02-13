@@ -1,0 +1,11 @@
+<h1>Questions: </h1>
+
+<%= link_to 'Add a new question', new_question_path %>
+
+<% @questions.each do |question| %>
+<h2><%= question.title %></h2>
+<p><%= question.body %></p>
+<td><%= link_to 'Show', question_path(question) %></td>
+<% end %>
+
+
