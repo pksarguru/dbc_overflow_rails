@@ -8,7 +8,9 @@
   <%= @question.body %>
 </p>
 
+<p>
 <%= link_to 'Add a Comment', new_question_comment_path(@question) %>
+</p>
 
 <strong>Add an Answer:</strong>
 <%= form_for([@question, @question.answers.build]) do |f| %>
