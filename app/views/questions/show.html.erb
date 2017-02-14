@@ -8,6 +8,8 @@
   <%= @question.body %>
 </p>
 
+<%= link_to 'Add a Comment', new_question_comment_path(@question) %>
+
 <strong>Add an Answer:</strong>
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <p>
@@ -21,6 +23,16 @@
   <p>
     <%= f.submit %>
   </p>
+<% end %>
+
+<% @question.answers.each do |ans| %>
+<p>
+  <% if ans.persisted? %>
+    <%= ans.title %><br>
+    <%= ans.body %>
+    <%= link_to 'Add a Comment', new_question_answer_comment_path(ans) %>
+  <% end %>
+</p>
 <% end %>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
