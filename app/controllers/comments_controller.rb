@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
   def new
-    @comment = @commentable.comments.new
+    @comment = Comment.new
   end
 
-  def create
-    @comment = @question.comments.build(comment_params)
-    @comment = @question.answers[0].comments.build(comment_params)
+   def create
+    if params[:answer_id]
+        @commentable = Answer.find(params[:answer_id])
+    else
+        @commentable = Question.find(params[:question_id])
+    end
+
+    @comment = @commentable.comments.build(comment_params)
   end
 
 end
